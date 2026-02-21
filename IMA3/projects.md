@@ -1,7 +1,3 @@
-Here are all 20 projects with full student-facing descriptions:
-
----
-
 # Project 1: City Route Planner
 
 ## Overview
