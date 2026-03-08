@@ -313,3 +313,169 @@ In this project you will implement an LRU cache from scratch and simulate it on 
 **Bonus:**
 - Implement an LFU (Least Frequently Used) cache as a second mode and compare eviction decisions between LRU and LFU on the same workload
 - Plot hit rate vs. cache size across several cache capacities on the same workload to visualize the cache size / hit rate tradeoff
+
+Here are 10 more project ideas, each designed to be built with either a visual UI or CLI — your choice:
+
+---
+
+# Project 14: Personal Finance Tracker
+
+## Overview
+Budgeting apps need to do more than store transactions — they must support fast queries like "how much did I spend on food last month?" or "show all transactions between these two dates over $50." This project asks you to build a personal finance engine that indexes the same transaction data in three different ways simultaneously, teaching you when and why to reach for different data structures.
+
+## Core Features
+
+**Required:**
+- Each transaction stores: ID, date, amount, category (food/rent/transport/etc.), merchant name, note
+- Implement a hash map indexed by category for O(1) category-total lookup and per-category listing
+- Implement an AVL tree indexed by date for efficient date-range queries
+- Implement a max-heap for surfacing the top-N largest transactions on demand
+- All three structures must stay synchronized on every insert and delete
+- Support commands / UI actions: `add-transaction`, `delete <id>`, `range <date1> <date2>`, `category-summary`, `top-spending <n>`, `monthly-report`
+- Load historical data from a CSV file (at least 300 records); support export of filtered results back to CSV
+- Handle edge cases: transactions with the same date, deleting a transaction that is currently in the heap's top-N, category with zero transactions
+- Provide complexity analysis justifying the choice of each structure for each query type
+
+**Bonus:**
+- Add a budget-limit feature: set a monthly cap per category and display a warning when usage exceeds 80%
+- Build a visual monthly breakdown — either a bar chart in the terminal or a rendered chart in a graphical UI
+
+---
+
+# Project 15: Multiplayer Word Game Engine
+
+## Overview
+Games like Scrabble and Boggle need to answer one question millions of times per second: is this string a valid word? And for hint systems: what valid words can be formed from these letters? Both problems are beautifully solved by a Trie. In this project you will build the backend engine for a word game, using a Trie as the dictionary core and a graph search over the letter board for word discovery.
+
+## Core Features
+
+**Required:**
+- Implement a Trie from scratch supporting insert, exact search, prefix check, and delete
+- Load a dictionary of at least 50,000 words from a file into the Trie
+- Represent the game board as an n×m grid of letter tiles (user-configurable size, at least 4×4)
+- Implement DFS over the board grid (adjacency = 8 neighbors) combined with Trie prefix pruning to find all valid words reachable from a starting cell without reusing tiles
+- Score each found word by length (standard Scrabble-style scoring)
+- Support commands / UI actions: `new-game`, `validate <word>`, `hint` (show top-5 scoring words available on current board), `place-word <word> <start>`, `leaderboard`
+- Handle edge cases: words shorter than 3 letters, same word reachable via multiple paths (count only once), board with no valid words
+- Provide complexity analysis for DFS + Trie pruning vs. DFS without pruning; show empirically how pruning reduces nodes explored
+
+**Bonus:**
+- Build an interactive board UI (graphical or terminal with cursor navigation) where players click or type to trace words on the board
+- Add an AI opponent that uses the hint engine to play optimally and compare its score to the human player
+
+---
+
+# Project 16: Smart Parking Lot Manager
+
+## Overview
+Modern parking systems need to allocate spaces efficiently, track occupancy in real time, and direct drivers to the nearest available spot as quickly as possible. This project models a multi-level parking structure as a graph and uses a combination of spatial data structures and shortest-path algorithms to simulate an intelligent parking management system.
+
+## Core Features
+
+**Required:**
+- Model the parking lot as a weighted directed graph: nodes are parking zones or intersections, edges are driving lanes with traversal times
+- Each parking space stores: space ID, level, zone, type (standard/handicapped/EV), status (free/occupied), vehicle plate if occupied
+- Implement Dijkstra's algorithm to find the shortest driving path from the entrance to the nearest available space matching a given type
+- Implement a hash map for O(1) vehicle lookup by license plate (for exit and payment)
+- Simulate an arrival/departure event stream from a file (at least 200 events)
+- Support commands / UI actions: `park <plate> <type>`, `exit <plate>`, `status` (occupancy by level and type), `find-space <type>`, `revenue-report`
+- Handle edge cases: lot full, vehicle not found on exit, EV spaces requested when none available, re-entry of the same plate
+- Provide complexity analysis for Dijkstra on the parking graph and hash map lookup
+
+**Bonus:**
+- Build a visual floor-plan display (ASCII grid or graphical) showing free/occupied spaces updating in real time as events are processed
+- Add a reservation system: allow pre-booking a space for a future time window, blocking it from walk-in allocation
+
+---
+
+# Project 17: Network Packet Router Simulator
+
+## Overview
+Routers in computer networks forward packets by consulting a routing table — essentially a lookup structure that maps destination IP prefixes to outgoing interfaces. Modern routers use a Patricia trie (compressed prefix trie) to handle millions of prefix lookups at line rate. In this project you will simulate a simplified IP packet router and demonstrate why a trie-based routing table dramatically outperforms a linear scan.
+
+## Core Features
+
+**Required:**
+- Implement a binary trie (one level per bit of a 32-bit IP address) supporting insert route, delete route, and longest-prefix match lookup
+- Each routing table entry stores: IP prefix, prefix length, next-hop interface, metric (cost)
+- Simulate packet forwarding: read a stream of packets (source IP, destination IP, payload size) from a file and route each one using longest-prefix match
+- Load an initial routing table from a file (at least 50 routes); support dynamic route updates during simulation
+- Report: packets routed per interface, unroutable packets (no matching prefix), average lookup time
+- Support commands / UI actions: `add-route`, `delete-route`, `lookup <ip>`, `routing-table`, `packet-log`, `stats`
+- Handle edge cases: overlapping prefixes (longest match wins), default route (0.0.0.0/0), packet with no matching route
+- Provide complexity analysis: O(32) worst-case lookup regardless of table size, vs. O(n) linear scan
+
+**Bonus:**
+- Implement route aggregation (CIDR supernetting): combine two adjacent /n routes into a single /(n-1) route when possible
+- Benchmark trie lookup vs. linear scan on routing tables of 50, 500, and 5,000 entries and plot the results
+
+---
+
+# Project 18: Epidemic Spread Simulator
+
+## Overview
+During an outbreak, epidemiologists model disease spread through a contact network — a graph where nodes are people and edges are contacts. This project asks you to simulate an SIR (Susceptible → Infected → Recovered) epidemic model on a contact graph, using graph traversal to propagate infection and graph analysis to identify the most influential spreaders and best intervention points.
+
+## Core Features
+
+**Required:**
+- Load or generate a contact network of at least 100 people and 400 contact edges (undirected, with contact frequency as weight)
+- Represent the network as a weighted adjacency list
+- Implement BFS-based epidemic spread: at each time step, each infected node infects uninfected neighbors with a configurable probability proportional to contact weight
+- Implement the full SIR model: susceptible → infected (after contact) → recovered (after configurable days) → immune
+- Identify the top-5 super-spreaders: nodes whose removal (simulate node deletion) reduces total infections most
+- Compute and report at each time step: number of S, I, R individuals; new infections; R0 estimate
+- Support commands / UI actions: `run-simulation <steps>`, `infect <node_id>`, `quarantine <node_id>`, `stats`, `reset`
+- Handle edge cases: fully recovered population stopping spread, isolated nodes never getting infected, network with multiple components
+- Provide complexity analysis for BFS-based spread over T time steps on a graph of V nodes and E edges
+
+**Bonus:**
+- Animate the epidemic curve (S/I/R counts over time) as a real-time updating chart in a graphical UI or terminal sparkline
+- Implement a vaccination strategy: given a budget of K vaccinations (node removals), compare random vs. highest-degree targeting in reducing total infections
+
+---
+
+# Project 19: Recipe and Ingredient Knowledge Graph
+
+## Overview
+Cooking apps like Yummly model recipes, ingredients, and dietary tags as a knowledge graph where relationships between entities enable powerful queries: "what can I cook with what's in my fridge?" or "find all vegan recipes under 30 minutes that share at least 3 ingredients with this dish." In this project you will build that knowledge graph and implement graph traversal algorithms to answer real culinary queries.
+
+## Core Features
+
+**Required:**
+- Model the knowledge graph as a heterogeneous directed graph: three node types (Recipe, Ingredient, Tag) with typed edges (Recipe→Ingredient: "contains", Recipe→Tag: "has-tag", Ingredient→Ingredient: "substitutes-for")
+- Load a dataset of at least 60 recipes and 80 ingredients from a structured file (CSV or JSON-like format)
+- Implement BFS from a set of available ingredients to find all fully or partially cookable recipes (missing ≤ 1 ingredient)
+- Implement a similarity score between two recipes: count shared ingredients / total unique ingredients (Jaccard)
+- Support commands / UI actions: `what-can-i-cook <ingredient-list>`, `similar-to <recipe>`, `substitutes-for <ingredient>`, `filter <tag>`, `add-recipe`, `ingredient-graph`
+- Build a hash map index of ingredients for O(1) lookup when checking recipe feasibility
+- Handle edge cases: ingredient not in any recipe, recipe with no tags, substitution chains (A substitutes B substitutes C)
+- Provide complexity analysis for BFS over the heterogeneous graph and the Jaccard similarity computation
+
+**Bonus:**
+- Build a visual graph display (even a simple ASCII adjacency diagram) showing recipe-ingredient relationships
+- Implement a "meal planner" feature: given a list of available ingredients and a target number of meals, select a set of recipes that maximizes ingredient reuse with minimum waste
+
+---
+
+# Project 20: Smart Home Automation Rule Engine
+
+## Overview
+Smart home platforms like Home Assistant let users define automation rules: "if motion is detected AND it's after 9pm, turn on the lights." Evaluating thousands of such rules efficiently when sensor events arrive is a rule-matching problem that benefits from indexing conditions in a trie and organizing rule dependencies in a graph. In this project you will build that rule engine from scratch.
+
+## Core Features
+
+**Required:**
+- Each automation rule stores: rule ID, name, list of conditions (sensor ID + operator + threshold), list of actions (device ID + command), enabled/disabled flag
+- Implement a trie indexed by sensor ID for fast retrieval of all rules that reference a given sensor when an event fires
+- Represent rule chaining (one rule's action can trigger another rule's condition) as a directed graph; detect and prevent infinite loops using cycle detection
+- Implement an event queue (ring buffer or linked list) for incoming sensor events; process events in order
+- Support commands / UI actions: `add-rule`, `delete-rule`, `enable/disable <id>`, `trigger-event <sensor> <value>`, `rule-list`, `execution-log`, `dependency-graph`
+- Simulate a stream of 200 sensor events from a file and log which rules fired and which actions executed
+- Handle edge cases: rule with unsatisfied conditions, chained rule cycle (A triggers B triggers A), event for an unknown sensor
+- Provide complexity analysis for rule lookup via trie vs. linear scan over all rules
+
+**Bonus:**
+- Build an interactive UI (graphical or terminal) where users visually add/edit rules and watch the execution log update in real time as events stream in
+- Add conflict detection: identify pairs of rules that could simultaneously set the same device to contradictory states
+
