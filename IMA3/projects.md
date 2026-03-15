@@ -20,6 +20,10 @@ Your program will read a city map from a file (nodes = locations, edges = roads 
 - Compare execution times of both algorithms on the same dataset and present a performance graph
 - Support a "top 3 alternative routes" feature using k-shortest paths
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
 # Project 2: Autocomplete Search Engine
@@ -43,6 +47,10 @@ This is a project about understanding how prefix-based retrieval works and why a
 - Support fuzzy prefix matching: return results even if the prefix contains one typo (edit distance ≤ 1)
 - Implement a "recently searched" feature using a small hash map that boosts the rank of recently queried terms
 - Benchmark Trie prefix search vs. linear scan on the same dataset and plot results
+
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
 
 ---
 
@@ -69,6 +77,10 @@ This project is deceptively rich: it combines tree design, recursive algorithms,
 - Add a simple permission system (read/write flags per node)
 - Implement `du` (disk usage) showing size breakdown per subdirectory
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
 # Project 4: Social Network Friend Recommender
@@ -93,6 +105,10 @@ You will load a real or synthetic social network dataset, identify who each user
 **Bonus:**
 - Implement Jaccard similarity score as an alternative ranking method and compare it to mutual friend count
 - Detect communities using a simple clustering approach (e.g., label propagation or union-find)
+
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
 
 ---
 
@@ -120,6 +136,10 @@ You will implement the AVL tree from scratch, including all rotations, and use i
 - Add a secondary hash table for O(1) lookup by product name alongside the AVL tree by product ID
 - Support a "low stock alert" feature that finds all products with quantity below a threshold using a range query
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
 # Project 6: Plagiarism Detector
@@ -146,6 +166,10 @@ This project sits at the intersection of string processing, hashing theory, and 
 - Implement a rolling hash (Rabin-Karp) for more efficient n-gram extraction
 - Visualize the similarity between all document pairs as a similarity matrix printed to the terminal
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
 # Project 7: Web Crawler and Link Graph Analyzer
@@ -171,6 +195,10 @@ This project is one of the most algorithmically rich in the list, requiring you 
 - Implement a simplified PageRank (5–10 iterations) and rank pages by score
 - Visualize the SCC structure by printing which pages belong to each component
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
 # Project 8: Flight Connection Optimizer
@@ -192,6 +220,10 @@ Every airline booking engine needs to answer questions like: what is the cheapes
 **Bonus:**
 - Implement Prim's or Kruskal's algorithm to compute the Minimum Spanning Tree of the network, visualized as a list of essential routes
 - Add a "travel budget" mode: find all destinations reachable from an airport within a given cost budget using a modified BFS/Dijkstra
+
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
 
 ---
 
@@ -217,32 +249,13 @@ Financial systems must maintain an ordered, searchable record of transactions an
 - Add a fraud detection module that flags any account with more than N transactions within a sliding time window
 - Support export of a time-range query result to a CSV file
 
----
+## Demo Application
 
-# Project 10: Spell Checker
-
-## Overview
-Spell checkers are in every word processor, browser, and IDE. They need to do two things: quickly determine if a word is correctly spelled, and suggest the most likely corrections when it is not. This project asks you to build both components: a fast lookup engine using a hash set, and a correction ranker using edit distance and word frequency.
-
-## Core Features
-
-**Required:**
-- Implement a hash set from scratch (using chaining for collision resolution) to store a dictionary of at least 10,000 words loaded from a file
-- For any input word, return instantly whether it is correctly spelled (O(1) average lookup)
-- For misspelled words, generate candidate corrections using the Levenshtein edit distance algorithm (implemented from scratch using dynamic programming)
-- Rank candidates by a combination of edit distance (lower = better) and word frequency in a reference corpus (stored in a hash map)
-- Return the top-5 ranked suggestions for each misspelled word
-- Process a full paragraph or text file, reporting all misspelled words and their suggestions
-- Handle edge cases: very short words (length 1–2), words not close to any dictionary entry, numbers and punctuation
-- Provide complexity analysis for hash set lookup and edit distance computation
-
-**Bonus:**
-- Use a Trie instead of a hash set for the dictionary and compare lookup and candidate generation speed between the two
-- Add keyboard-proximity awareness: rank corrections higher if the mistyped letters are physically close on a QWERTY keyboard
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
 
 ---
 
-# Project 11: Contact Book with Multi-Field Search
+# Project 10: Contact Book with Multi-Field Search
 
 ## Overview
 A contact book sounds simple, but building one that supports fast search across multiple different fields simultaneously — name, phone number, and birthday — requires combining multiple data structures, each optimized for a different type of query. In this project you will implement three data structures that all index the same set of contacts and keep them synchronized through every insert and delete.
@@ -266,9 +279,13 @@ This project tests your ability to design a coherent system with multiple intera
 - Export contacts sorted by name (using Trie in-order traversal or AVL in-order) to a CSV file
 - Add an undo feature using a stack that tracks the last 5 operations
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 12: Maze Generator and Solver
+# Project 11: Maze Generator and Solver
 
 ## Overview
 Mazes are graphs in disguise. Every cell is a node; every open passage between adjacent cells is an edge. This insight means the entire toolkit of graph algorithms applies directly to mazes. In this project you will both generate random mazes using graph-based algorithms and then solve them using BFS and DFS, comparing the two approaches visually and quantitatively.
@@ -289,9 +306,13 @@ Mazes are graphs in disguise. Every cell is a node; every open passage between a
 - Implement A* search using Manhattan distance as the heuristic and compare its performance against BFS
 - Support user-defined mazes loaded from a text file (using a simple character grid format)
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 13: LRU Cache Implementation
+# Project 12: LRU Cache Implementation
 
 ## Overview
 An LRU (Least Recently Used) cache is one of the most commonly asked-about data structures in technical interviews — and for good reason. It appears in CPU memory management, database buffer pools, web browsers, and CDN servers. The challenge is implementing a cache that performs both get and put operations in O(1) time, which requires a clever combination of two data structures working together.
@@ -316,9 +337,13 @@ In this project you will implement an LRU cache from scratch and simulate it on 
 
 Here are 10 more project ideas, each designed to be built with either a visual UI or CLI — your choice:
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 14: Personal Finance Tracker
+# Project 13: Personal Finance Tracker
 
 ## Overview
 Budgeting apps need to do more than store transactions — they must support fast queries like "how much did I spend on food last month?" or "show all transactions between these two dates over $50." This project asks you to build a personal finance engine that indexes the same transaction data in three different ways simultaneously, teaching you when and why to reach for different data structures.
@@ -340,9 +365,13 @@ Budgeting apps need to do more than store transactions — they must support fas
 - Add a budget-limit feature: set a monthly cap per category and display a warning when usage exceeds 80%
 - Build a visual monthly breakdown — either a bar chart in the terminal or a rendered chart in a graphical UI
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 15: Multiplayer Word Game Engine
+# Project 14: Multiplayer Word Game Engine
 
 ## Overview
 Games like Scrabble and Boggle need to answer one question millions of times per second: is this string a valid word? And for hint systems: what valid words can be formed from these letters? Both problems are beautifully solved by a Trie. In this project you will build the backend engine for a word game, using a Trie as the dictionary core and a graph search over the letter board for word discovery.
@@ -363,9 +392,13 @@ Games like Scrabble and Boggle need to answer one question millions of times per
 - Build an interactive board UI (graphical or terminal with cursor navigation) where players click or type to trace words on the board
 - Add an AI opponent that uses the hint engine to play optimally and compare its score to the human player
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 16: Smart Parking Lot Manager
+# Project 15: Smart Parking Lot Manager
 
 ## Overview
 Modern parking systems need to allocate spaces efficiently, track occupancy in real time, and direct drivers to the nearest available spot as quickly as possible. This project models a multi-level parking structure as a graph and uses a combination of spatial data structures and shortest-path algorithms to simulate an intelligent parking management system.
@@ -386,9 +419,13 @@ Modern parking systems need to allocate spaces efficiently, track occupancy in r
 - Build a visual floor-plan display (ASCII grid or graphical) showing free/occupied spaces updating in real time as events are processed
 - Add a reservation system: allow pre-booking a space for a future time window, blocking it from walk-in allocation
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 17: Network Packet Router Simulator
+# Project 16: Network Packet Router Simulator
 
 ## Overview
 Routers in computer networks forward packets by consulting a routing table — essentially a lookup structure that maps destination IP prefixes to outgoing interfaces. Modern routers use a Patricia trie (compressed prefix trie) to handle millions of prefix lookups at line rate. In this project you will simulate a simplified IP packet router and demonstrate why a trie-based routing table dramatically outperforms a linear scan.
@@ -409,9 +446,13 @@ Routers in computer networks forward packets by consulting a routing table — e
 - Implement route aggregation (CIDR supernetting): combine two adjacent /n routes into a single /(n-1) route when possible
 - Benchmark trie lookup vs. linear scan on routing tables of 50, 500, and 5,000 entries and plot the results
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 18: Epidemic Spread Simulator
+# Project 17: Epidemic Spread Simulator
 
 ## Overview
 During an outbreak, epidemiologists model disease spread through a contact network — a graph where nodes are people and edges are contacts. This project asks you to simulate an SIR (Susceptible → Infected → Recovered) epidemic model on a contact graph, using graph traversal to propagate infection and graph analysis to identify the most influential spreaders and best intervention points.
@@ -433,9 +474,13 @@ During an outbreak, epidemiologists model disease spread through a contact netwo
 - Animate the epidemic curve (S/I/R counts over time) as a real-time updating chart in a graphical UI or terminal sparkline
 - Implement a vaccination strategy: given a budget of K vaccinations (node removals), compare random vs. highest-degree targeting in reducing total infections
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 19: Recipe and Ingredient Knowledge Graph
+# Project 18: Recipe and Ingredient Knowledge Graph
 
 ## Overview
 Cooking apps like Yummly model recipes, ingredients, and dietary tags as a knowledge graph where relationships between entities enable powerful queries: "what can I cook with what's in my fridge?" or "find all vegan recipes under 30 minutes that share at least 3 ingredients with this dish." In this project you will build that knowledge graph and implement graph traversal algorithms to answer real culinary queries.
@@ -456,9 +501,13 @@ Cooking apps like Yummly model recipes, ingredients, and dietary tags as a knowl
 - Build a visual graph display (even a simple ASCII adjacency diagram) showing recipe-ingredient relationships
 - Implement a "meal planner" feature: given a list of available ingredients and a target number of meals, select a set of recipes that maximizes ingredient reuse with minimum waste
 
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
+
 ---
 
-# Project 20: Smart Home Automation Rule Engine
+# Project 19: Smart Home Automation Rule Engine
 
 ## Overview
 Smart home platforms like Home Assistant let users define automation rules: "if motion is detected AND it's after 9pm, turn on the lights." Evaluating thousands of such rules efficiently when sensor events arrive is a rule-matching problem that benefits from indexing conditions in a trie and organizing rule dependencies in a graph. In this project you will build that rule engine from scratch.
@@ -478,4 +527,8 @@ Smart home platforms like Home Assistant let users define automation rules: "if 
 **Bonus:**
 - Build an interactive UI (graphical or terminal) where users visually add/edit rules and watch the execution log update in real time as events stream in
 - Add conflict detection: identify pairs of rules that could simultaneously set the same device to contradictory states
+
+## Demo Application
+
+The demo application for this project can be implemented either as a command-line (CLI) tool or as a simple graphical interface. The choice of interface is up to you
 
